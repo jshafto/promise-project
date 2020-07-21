@@ -13,10 +13,10 @@ Create a clone of the `curl` utility that will be able to
 - [x] Parsing command-line arguments
 - [x] Just getting a URL
 - [x] Just failing to get a URL
-- [ ] Now, put it in a file
-- [ ] Setting an arbitrary header
-- [ ] Setting special headers
-- [ ] Capturing response headers
+- [x] Now, put it in a file
+- [x] Setting an arbitrary header
+- [x] Setting special headers
+- [x] Capturing response headers
 - [ ] Sending data
 - [ ] Overriding the method of the request
 - [ ] Showing a "help" message
