@@ -12,7 +12,7 @@ Create a clone of the `curl` utility that will be able to
 ## Steps
 - [x] Parsing command-line arguments
 - [x] Just getting a URL
-- [ ] Just failing to get a URL
+- [x] Just failing to get a URL
 - [ ] Now, put it in a file
 - [ ] Setting an arbitrary header
 - [ ] Setting special headers
