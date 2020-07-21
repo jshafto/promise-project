@@ -1,21 +1,95 @@
 const commandLineArgs = require('command-line-args');
+const commandLineUsage = require('command-line-usage');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const fsPromises = fs.promises;
 
 // set up flags
 const optionDefinitions = [
-    { name: 'url', alias: 'u', type: String, multiple: false, defaultOption: true },
-    { name: 'output', alias: 'o', type: String, multiple: false, defaultOption: false },
-    { name: 'header', alias: 'H', type: String, multiple: true },
-    { name: 'agent', alias: 'A', type: String, multiple: false},
-    { name: 'referer', alias: 'e', type: String, multiple: false },
-    {name: "dump-header", type: Boolean, multiple: false},
-    {name: 'data', alias: 'd', type: String, multiple: false},
-    {name: 'request', alias: 'X', type: String, multiple: false}
+    {
+        name: 'url',
+        alias: 'u',
+        type: String,
+        multiple: false,
+        defaultOption: true,
+        description: 'url to make request'
+    },
+    {
+        name: 'output',
+        alias: 'o',
+        type: String,
+        multiple: false,
+        defaultOption: false,
+        description: 'Write output to <file> instead of stdout.'
+    },
+    {
+        name: 'header',
+        alias: 'H',
+        type: String,
+        multiple: true,
+        description: 'Extra header to include in the request when sending HTTP to a server.'
+    },
+    {
+        name: 'agent',
+        alias: 'A',
+        type: String,
+        multiple: false,
+        description: 'Specify the User-Agent string to send to the HTTP server.'
+    },
+    {
+        name: 'referer',
+        alias: 'e',
+        type: String,
+        multiple: false,
+        description: 'Sends the "Referrer Page" information to the HTTP server.'
+    },
+    {
+        name: "dump-header",
+        alias: 'D',
+        type: Boolean,
+        multiple: false,
+        description: 'Write the received protocol headers to the specified file.'
+    },
+    {
+        name: 'data',
+        alias: 'd',
+        type: String,
+        multiple: false,
+        description: 'Sends the specified data in a POST request to the HTTP server.'
+    },
+    {
+        name: 'request',
+        alias: 'X',
+        type: String,
+        multiple: false,
+        description: 'Specifies a custom request method to use when communicating with the HTTP server.'
+    },
+    {
+        name: 'help',
+        alias: 'h',
+        type: Boolean,
+        description:  'Lists all current command line options with a short description.'
+    }
+
 ]
 
 const options = commandLineArgs(optionDefinitions)
+
+if (options.help) {
+    // use command-line-usage package to display options
+    const usage = commandLineUsage([
+        {
+            header: 'Curl Clone',
+            content: 'A tool to transfer data to or from a server.'
+        },
+        {
+            header: 'Options',
+            optionList: optionDefinitions
+        }
+
+        ])
+        console.log(usage)
+} else {
 
 // define a headers object
 let myHeaders = new fetch.Headers();
@@ -59,7 +133,7 @@ myInit.headers = myHeaders;
 myInit.body = myBody;
 // if the request flag is set, change the method to the one
 // specified with the flag
-if (options.request){
+if (options.request) {
     myInit.method = options.request
 }
 
@@ -98,3 +172,5 @@ fetch(options.url, myInit)
         console.log(err.toString())
 
     })
+
+}

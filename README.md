@@ -19,7 +19,7 @@ Create a clone of the `curl` utility that will be able to
 - [x] Capturing response headers
 - [x] Sending data
 - [x] Overriding the method of the request
-- [ ] Showing a "help" message
+- [x] Showing a "help" message
 - [ ] Bonus round: multiple files, multiple output destinations
 - [ ] Bonus round: list globbing
 - [ ] Nightmare round: the progress meter
