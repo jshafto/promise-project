@@ -1,8 +1,7 @@
-200 OK 
-
+405 Method Not Allowed 
+allow: GET
 connection: close
-content-length: 263
-content-type: text/plain
-date: Tue, 21 Jul 2020 21:34:35 GMT
+content-length: 0
+date: Tue, 21 Jul 2020 22:14:23 GMT
 server: Goliath
 via: 1.1 vegur
