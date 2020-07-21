@@ -11,7 +11,8 @@ const optionDefinitions = [
     { name: 'header', alias: 'H', type: String, multiple: true },
     { name: 'agent', alias: 'A', type: String, multiple: false},
     { name: 'referer', alias: 'e', type: String, multiple: false },
-    {name: "dump-header", type: Boolean, multiple: false}
+    {name: "dump-header", type: Boolean, multiple: false},
+    {name: 'data', alias: 'd', type: String, multiple: false}
 
     //{ name: 'timeout', alias: 't', type: Number }
 ]
@@ -26,8 +27,8 @@ let myHeaders = new fetch.Headers();
 
 // myHeaders.append('Content-Type', 'image/jpeg');
 // console.log(myHeaders);
-
-
+let myBody = {};
+if (options.data) myBody = options.data;
 let myInit = {}
 //myInit.headers = {}
 if (options.header){
@@ -46,6 +47,8 @@ if (options.referer) {
     myHeaders.append("Referer", options.referer)
 }
 myInit.headers = myHeaders;
+myInit.body = myBody;
+
 fetch(options.url, myInit)
     .then(result => {
         if (options['dump-header']) {
